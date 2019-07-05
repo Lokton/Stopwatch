@@ -1,0 +1,266 @@
+# Stopwatch
+Creating blinking form that appears on time or when timer is done.
+
+import java.awt.Color;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+
+public class secondframe extends javax.swing.JFrame {
+
+    public secondframe() {
+        initComponents();
+    }
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        bGroup = new javax.swing.ButtonGroup();
+        jedan = new javax.swing.JRadioButton();
+        dva = new javax.swing.JRadioButton();
+        time2 = new javax.swing.JFormattedTextField();
+        boja = new javax.swing.JButton();
+        speed = new javax.swing.JLabel();
+        start = new javax.swing.JButton();
+        stop = new javax.swing.JButton();
+        choosenC = new javax.swing.JLabel();
+        time1 = new javax.swing.JFormattedTextField();
+        pokazboje = new javax.swing.JLabel();
+        combo = new javax.swing.JComboBox<>();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Timer");
+
+        bGroup.add(jedan);
+        jedan.setText("on time:");
+        jedan.setToolTipText("Choose one option");
+
+        bGroup.add(dva);
+        dva.setText("countdown(mins) :");
+        dva.setToolTipText("Choose one option");
+
+        time2.setText("0");
+        time2.setToolTipText("Set minutes");
+
+        boja.setText("Choose Color");
+        boja.setToolTipText("Set color");
+        boja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bojaActionPerformed(evt);
+            }
+        });
+
+        speed.setText("Speed:");
+
+        start.setText("Start");
+        start.setToolTipText("Start application");
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+
+        stop.setText("Stop");
+        stop.setToolTipText("Stop application");
+        stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopActionPerformed(evt);
+            }
+        });
+
+        time1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm:ss"))));
+        time1.setText("HH:mm:ss");
+        time1.setToolTipText("");
+
+        pokazboje.setText("Choosen Color");
+
+        combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(boja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(start)
+                                .addComponent(speed, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jedan))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(time1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(stop))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(pokazboje, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(choosenC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(time2, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(26, 26, 26))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jedan)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(time1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dva)
+                    .addComponent(time2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(choosenC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(boja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pokazboje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(speed, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(start)
+                    .addComponent(stop))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        combo.getAccessibleContext().setAccessibleParent(combo);
+
+        pack();
+    }// </editor-fold>                        
+
+    JFrame frame2;
+    Color color;
+    Timer timer;
+    
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        frame2 = new JFrame();
+        timer = new Timer();
+        int blink = (int) combo.getSelectedIndex()* 1000;
+        frame2.setSize(300, 300);
+        
+        
+        if(jedan.isSelected()){
+            DateTimeFormatter date = DateTimeFormatter.ISO_LOCAL_TIME;
+            String jedantext = time1.getText();
+            LocalTime local1 = LocalTime.parse(jedantext, date);
+            LocalTime local2 = LocalTime.now();
+            Duration duration = Duration.between(local2, local1);
+            int x = (int) duration.getSeconds() * 1000;
+            TimerTask task1 = new TimerTask(){
+                @Override
+                public void run() {
+                    frame2.setVisible(true);
+                    frame2.getContentPane().setBackground(color);
+                    TimerTask task11 = new TimerTask(){
+                        @Override
+                        public void run() {
+                            frame2.getContentPane().setBackground(Color.WHITE);
+                        }
+                    };
+                    timer.schedule(task11, blink);
+                }
+            };
+            timer.schedule(task1, x, blink);
+        }
+        else if(dva.isSelected()){
+            
+            String dvatext = time2.getText();
+            int count = Integer.parseInt(dvatext) * 60000;
+            TimerTask task2 = new TimerTask(){
+                @Override
+                public void run() {
+                    frame2.setVisible(true);
+                    frame2.getContentPane().setBackground(color);
+                    TimerTask task22 = new TimerTask(){
+                        @Override
+                        public void run() {
+                                frame2.getContentPane().setBackground(Color.WHITE);
+                        }
+                    };
+                    timer.schedule(task22, blink);
+                }
+            };
+            timer.schedule(task2, count, blink);
+        }
+        jedan.setEnabled(false);
+        dva.setEnabled(false);
+        boja.setEnabled(false);
+        combo.setEnabled(false);
+        start.setEnabled(false);
+        time1.setEnabled(false);
+        time2.setEnabled(false);
+        speed.setEnabled(false);
+    }                                     
+
+    private void bojaActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        color = JColorChooser.showDialog(null, "Choose color", Color.BLACK);
+        pokazboje.setForeground(color);
+    }                                    
+
+    private void stopActionPerformed(java.awt.event.ActionEvent evt) {                                     
+
+        if(evt == null){
+            
+        }
+        else{
+        timer.cancel();
+        frame2.dispose();
+        jedan.setEnabled(true);
+        dva.setEnabled(true);
+        boja.setEnabled(true);
+        combo.setEnabled(true);
+        speed.setEnabled(true);
+        start.setEnabled(true);
+        time1.setEnabled(true);
+        time2.setEnabled(true);
+        }
+    }                                    
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(secondframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new secondframe().setVisible(true);
+        });
+    }
+    // Variables declaration - do not modify                     
+    public javax.swing.ButtonGroup bGroup;
+    public javax.swing.JButton boja;
+    public javax.swing.JLabel choosenC;
+    public javax.swing.JComboBox<String> combo;
+    public javax.swing.JRadioButton dva;
+    public javax.swing.JRadioButton jedan;
+    private javax.swing.JLabel pokazboje;
+    public javax.swing.JLabel speed;
+    public javax.swing.JButton start;
+    public javax.swing.JButton stop;
+    private javax.swing.JFormattedTextField time1;
+    public javax.swing.JFormattedTextField time2;
+    // End of variables declaration                   
