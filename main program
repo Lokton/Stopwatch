@@ -1,0 +1,29 @@
+# Stopwatch
+Creating blinking form that appears on time or when timer is done.
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+
+public class mainframe {
+     public static void main(String[] args) {
+        
+        ImageIcon icon = new ImageIcon("");
+
+        int bar = JOptionPane.showOptionDialog(null, "Choose action.", "Timer", JOptionPane.YES_NO_CANCEL_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, icon, new String[] {"Settings", "Close"}, null);
+
+        switch(bar)
+        {
+            case JOptionPane.YES_OPTION:
+                secondframe frame1 = new secondframe();       
+                frame1.setLocationRelativeTo(null);
+                frame1.setIconImage(icon.getImage());
+                frame1.setVisible(true);
+                break;
+
+            case JOptionPane.NO_OPTION:
+                System.exit(0);
+                break;
+        }
+    }
+}
